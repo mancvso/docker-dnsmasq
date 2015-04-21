@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get install -q -y language-pack-en
 RUN update-locale LANG=en_US.UTF-8
 
-RUN apt-get install -q -y vim nano
+RUN apt-get install -q -y vim nano dig
 
 # Install dnsmaqk
 RUN apt-get install -q -y dnsmasq && apt-get clean
