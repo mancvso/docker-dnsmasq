@@ -5,15 +5,14 @@ RUN apt-get update
 RUN apt-get install -q -y language-pack-en
 RUN update-locale LANG=en_US.UTF-8
 
-RUN apt-get install -q -y vim
+RUN apt-get install -q -y vim nano
 
 # Install dnsmaqk
-RUN apt-get install -q -y dnsmasq
+RUN apt-get install -q -y dnsmasq && apt-get clean
 
 # Configure dnsmasq
+ADD dnsmasq.conf /etc/dnsmasq.conf
 RUN echo 'listen-address=__LOCAL_IP__' >> /etc/dnsmasq.conf
-RUN echo 'resolv-file=/etc/resolv.dnsmasq.conf' >> /etc/dnsmasq.conf
-RUN echo 'conf-dir=/etc/dnsmasq.d'  >> /etc/dnsmasq.conf
 RUN echo 'nameserver 8.8.8.8' >> /etc/resolv.dnsmasq.conf
 RUN echo 'nameserver 8.8.4.4' >> /etc/resolv.dnsmasq.conf
 
