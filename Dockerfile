@@ -12,6 +12,7 @@ RUN apt-get install -q -y dnsmasq && apt-get clean
 
 # Configure dnsmasq
 ADD dnsmasq.conf /etc/dnsmasq.conf
+ADD logrotate_dnsmasq /etc/logrotate.d/dnsmasq
 RUN echo 'listen-address=__LOCAL_IP__' >> /etc/dnsmasq.conf
 RUN echo 'nameserver 8.8.8.8' >> /etc/resolv.dnsmasq.conf
 RUN echo 'nameserver 8.8.4.4' >> /etc/resolv.dnsmasq.conf
